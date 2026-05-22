@@ -1,0 +1,32 @@
+# Colors
+colors:
+  primary: "#1E3A8A"
+  primary_lt: "#3B82F6"
+  accent: "#22C55E"
+  bg: "#F5F6FA"
+  surface: "#FFFFFF"
+  muted: "#94A3B8"
+  text: "#1E293B"
+  text_light: "#64748B"
+  border: "#E2E8F0"
+  nav_active: "#DBEAFE"
+
+# App
+app:
+  save_file: "entries.json"
+  title: "OASE DocFill"
+
+  window:
+    size:
+      width: 900
+      height: 600
+
+    min_size:
+      width: 800
+      height: 550
+
+# Paths (relative)
+paths:
+  stylesheets:
+    - "styles/main.qss"
+    - "styles/start_dialogue.qss"

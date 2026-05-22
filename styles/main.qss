@@ -1,0 +1,226 @@
+/* Allgemeines Fenster */
+QMainWindow {
+    background-color: $(bg);
+    font-size: 12px
+}
+
+QWidget {
+    font-family: "IBM Plex Sans";
+}
+
+QLineEdit, QTextEdit {
+    font-family: "IBM Plex Mono";
+}
+
+#header{
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:0,
+        stop: 0 $(primary), stop:1 $(primary_lt)
+    );
+}
+
+#header QLabel {
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    background: transparent;
+}
+
+#header QLineEdit {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    padding: 7px 14px;
+    color: white;
+    font-size: 14px;
+}
+
+
+#sidebar{
+    background: $(surface);
+    border-right: 1px solid $(border);
+}
+
+#navbar-header{
+    color: $(muted);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 4px 8px;
+}
+
+QPushButton[type="nav"]{
+    font-size: 12px;
+    color: $(text);
+    text-align: left;
+    border: None;
+    padding: 8px 16px;
+}
+
+QPushButton[type="nav"]:hover{
+    font-size: 14px;
+}
+
+QPushButton[type="nav"][active="true"]{
+    background: $(bg);
+    
+    font-size: 14px;
+    font-weight: 700;
+    color: $(primary);
+}
+
+#card{
+    background: $(surface);
+    border-radius: 12px;
+    border: 1px solid $(border);
+}
+
+#add-btn{
+    background: $(nav_active);
+    color: $(primary);
+    border: 1.5px dashed $(primary_lt);
+    border-radius: 8px;
+    padding: 7px 18px;
+}
+
+#remove-btn{
+    background: #FEE2E2;
+    color: #DC2626;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-weight: 600;
+}
+
+QLabel[type="h3"]{
+    font-weight: 700;
+    color: $(primary);
+}
+
+QLineEdit, QTextEdit{
+    background: $(bg);
+    border: 1.5px solid $(border);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+QLineEdit:focus, QTextEdit:focus{
+    background: $(surface);
+    border-color: $(primary_lt);
+}
+
+QSpinBox, QDoubleSpinBox {
+    background: $(bg);
+    border: 1.5px solid $(border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 13px;
+    color: $(text);
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus {
+    background: $(surface);
+    border-color: $(primary_lt);
+}
+
+/* Die +/- Buttons */
+QSpinBox::up-button,
+QSpinBox::down-button, 
+QDoubleSpinBox::up-button,
+QDoubleSpinBox::down-button {
+    width: 24px;
+    border: none;
+    background: transparent;
+}
+
+QSpinBox::up-button:hover,
+QSpinBox::down-button:hover,
+QDoubleSpinBox::up-button:hover,
+QDoubleSpinBox::down-button:hover {
+    background: $(nav_active);
+    border-radius: 4px;
+}
+
+/* Pfeile */
+QSpinBox::up-arrow, QDoubleSpinBox::up-arrow {
+    image: url(assets/icons/chevron-up.svg);
+    width: 12px;
+    height: 12px;
+}
+
+QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {
+    image: url(assets/icons/chevron-down.svg);
+    width: 12px;
+    height: 12px;
+}
+
+QComboBox {
+    background: $(surface);
+    border: 1.5px solid $(border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 13px;
+    color: $(text);
+}
+
+QComboBox:focus {
+    border-color: $(primary_lt);
+}
+
+QComboBox:hover {
+    border-color: $(primary_lt);
+}
+
+/* Der Pfeil-Button rechts */
+QComboBox::drop-down {
+    border: none;
+    width: 28px;
+}
+
+QComboBox::down-arrow {
+    image: url(assets/icons/chevron-down.svg);
+    width: 12px;
+    height: 12px;
+}
+
+/* Das Dropdown-Menü */
+QComboBox QAbstractItemView {
+    background: $(surface);
+    border: 1.5px solid $(border);
+    border-radius: 8px;
+    padding: 4px;
+    outline: none;        /* entfernt den Fokus-Rahmen */
+}
+
+/* Einzelne Einträge */
+QComboBox QAbstractItemView::item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: $(text);
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background: $(nav_active);
+    color: $(primary);
+}
+
+QComboBox QAbstractItemView::item:selected {
+    background: $(nav_active);
+    color: $(primary);
+    font-weight: 700;
+}
+
+#save-btn, #gen-doc-btn {
+    background: transparent;
+    border: 1px solid rgba(30, 58, 138, 0.25);
+    border-radius: 8px;
+    padding: 6px;
+}
+
+#save-btn:hover, #gen-doc-btn:hover {
+    background: rgba(219, 234, 254, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+#save-btn:pressed, #gen-doc-btn:pressed {
+    background: rgba(30, 58, 138, 0.5);
+}

@@ -1,0 +1,8 @@
+# bat file
+*.bat
+
+claude_final.py
+
+__pycache__/
+
+*.pptx

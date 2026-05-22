@@ -1,0 +1,31 @@
+#start-dialogue-body{
+    background: $(bg);
+    border-radius: 18px;
+}
+
+#start-dialogue-header{
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:0,
+        stop: 0 $(primary), stop:1 $(primary_lt)
+    );
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+#start-dialogue-header QLabel {
+    color: white;
+}
+
+#start-dialogue-header QLabel[type="h1"]{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+#start-dialogue-header QLabel[type="text-muted"]{
+    color: $(muted);
+    font-weight:600;
+}
+
+#start-dialogue-btn-close{
+    background: transparent
+}
