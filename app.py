@@ -21,6 +21,9 @@ from pages.bowling_kegeln import BowlingKegeln
 from pages.partner import Partner
 from pages.ansprechpartner import Ansprechpartner
 
+from pathlib import Path
+import json
+
 # The main app
 class OaseApp(QMainWindow):
     def __init__(self, house_name):
@@ -36,6 +39,17 @@ class OaseApp(QMainWindow):
         self.house_name = str.replace(house_name, ".json", "")
         self.house_name = str.replace(self.house_name, "_", " ")
 
+        # pages
+        self.pages = [
+            ("🏠  Allgemeines", AllgemeinPage()),
+            ("🎬  Startseite", Startseite()),
+            ("🎉  Feiern & Tagen", FeiernTagen()),
+            ("🛏  Übernachten", Uebernachten()),
+            ("🎳  Bowling & Kegeln", BowlingKegeln()),
+            ("🤝  Partner", Partner()),
+            ("👤  Ansprechpartner", Ansprechpartner())
+                  ]
+
         # Main Widget
         root = QWidget()
         self.setCentralWidget(root)
@@ -45,6 +59,19 @@ class OaseApp(QMainWindow):
         main_layout.setSpacing(0)
 
         root.setLayout(main_layout)
+
+        #loading existing data
+        self.save_path = Path("data") / house_name
+        if self.save_path.exists():
+            with open (self.save_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            self.pages[0][1].set_data(data.get("Seite-Allgemeines",{}))
+            self.pages[6][1].set_data(data.get("Seite-Ansprechpartner",{}))
+            self.pages[4][1].set_data(data.get("Seite-Bowling-Kegeln",{}))
+            self.pages[2][1].set_data(data.get("Seite-Feiern-Tagen",{}))
+            self.pages[5][1].set_data(data.get("Seite-Partner",{})),
+            self.pages[1][1].set_data(data.get("Seite-Start",{})),
+            self.pages[3][1].set_data(data.get("Seite-Übernachten",{}))
 
         # Adding Header and Body
         main_layout.addWidget(self._header())
@@ -75,6 +102,7 @@ class OaseApp(QMainWindow):
         save_btn.setIcon(QIcon("assets/icons/save_white.svg"))
         save_btn.setToolTip("Eingaben speichern..")
         save_btn.setIconSize(QSize(24,24))
+        save_btn.clicked.connect(self.save_data)
         layout.addWidget(save_btn)
 
         gen_doc_btn = QPushButton()
@@ -119,16 +147,7 @@ class OaseApp(QMainWindow):
         self.nav_buttons = []
 
         # pages
-        pages = [
-            ("🏠  Allgemeines", AllgemeinPage()),
-            ("🎬  Startseite", Startseite()),
-            ("🎉  Feiern & Tagen", FeiernTagen()),
-            ("🛏  Übernachten", Uebernachten()),
-            ("🎳  Bowling & Kegeln", BowlingKegeln()),
-            ("🤝  Partner", Partner()),
-            ("👤  Ansprechpartner", Ansprechpartner())
-                  ]
-        for i, (label, page) in enumerate(pages):
+        for i, (label, page) in enumerate(self.pages):
             self.stacked.addWidget(page)
             btn = QPushButton(label)
             btn.setProperty("type", "nav")
@@ -155,3 +174,17 @@ class OaseApp(QMainWindow):
             btn.setProperty("active", i == index)
             btn.style().unpolish(btn)
             btn.style().polish(btn)
+
+    def save_data(self):
+        data ={
+            "Seite-Allgemeines": self.pages[0][1].get_data(),
+            "Seite-Ansprechpartner": self.pages[6][1].get_data(),
+            "Seite-Bowling-Kegeln": self.pages[4][1].get_data(),
+            "Seite-Feiern-Tagen": self.pages[2][1].get_data(),
+            "Seite-Partner": self.pages[5][1].get_data(),
+            "Seite-Start": self.pages[1][1].get_data(),
+            "Seite-Übernachten": self.pages[3][1].get_data(),
+        }
+        with open(self.save_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    

@@ -1,7 +1,13 @@
 # Colors
 colors:
   primary: "#1E3A8A"
+  primary_hover: "#3151B7"
+  primary_pressed: "#162B63"
+  
   primary_lt: "#3B82F6"
+  primary_lt_hover: "#4F8EF7"
+  primary_lt_pressed: "#2563EB"
+  
   bg: "#F5F6FA"
   surface: "#FFFFFF"
   muted: "#94A3B8"

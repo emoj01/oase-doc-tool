@@ -105,4 +105,20 @@ class Uebernachten(QWidget):
         if fw:
             fw.clearFocus()
         return super().mousePressEvent(event)
+    
+    def get_data(self) -> dict:
+        return {
+            "Zimmer": {field: widget.value() for field, widget in self.f_zimmer.items()},
+            "Frühstück Zeiten": self.f_fruehstueck_zeiten.text(),
+            "Frühstück Preis": self.f_fruehstueck_preis.value(),
+            "Beschreibung": self.f_beschreibung.toPlainText()
+        }
+
+    def set_data(self, data: dict):
+        for field, widget in self.f_zimmer.items():
+            widget.setValue(data.get("Zimmer", {}).get(field, 0))
+        
+        self.f_fruehstueck_zeiten.setText(data.get("Frühstück Zeiten", ""))
+        self.f_fruehstueck_preis.setValue(data.get("Frühstück Preis", 0.0))
+        self.f_beschreibung.setPlainText(data.get("Beschreibung", ""))
 

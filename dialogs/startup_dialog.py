@@ -41,6 +41,7 @@ class StartupDialog(QDialog):
 
         self.main.addWidget(self._initial_page())
         self.main.addWidget(self._start_new())
+        self.main.addWidget(self._load_file_page())
         self._switch_page(0)
 
     def _header(self) -> QFrame:
@@ -136,25 +137,19 @@ class StartupDialog(QDialog):
 
         btn_layout = QHBoxLayout()
         btn_layout.setSpacing(12)
-
-        generate_btn = QPushButton()
-        generate_btn.setFixedSize(QSize(120,32))
-        generate_btn.setProperty("type", "start-dialogue-btn-green")
-        generate_btn.setIcon(QIcon("assets/icons/file-plus-corner.svg"))
-        generate_btn.setIconSize(QSize(20,20))
-        generate_btn.setToolTip("Dokument anlegen!")
-        generate_btn.clicked.connect(lambda checked: self._generate_new_file(self.f_oase_new_name.text()))
+        generate_btn = self._icon_button("assets/icons/file-plus-corner.svg",
+                                        (120,32),(20,20),
+                                        "start-dialogue-btn-green",
+                                        "Dokument anlegen!",
+                                        lambda: self._generate_new_file(self.f_oase_new_name.text()))
+        go_back_btn = self._icon_button("assets/icons/undo.svg",
+                                        (120,32),(20,20),
+                                        "start-dialogue-btn-red",
+                                        "Abbrechen",
+                                        lambda: self._switch_page(0))
+        
         btn_layout.addWidget(generate_btn)
-
-        go_back_btn = QPushButton()
-        go_back_btn.setFixedSize(QSize(120,32))
-        go_back_btn.setProperty("type", "start-dialogue-btn-red")
-        go_back_btn.setIcon(QIcon("assets/icons/undo.svg"))
-        go_back_btn.setIconSize(QSize(20,20))
-        go_back_btn.setToolTip("Abbrechen")
-        go_back_btn.clicked.connect(lambda: self._switch_page(0))
         btn_layout.addWidget(go_back_btn)
-    
         layout.addLayout(btn_layout)
 
         return content
@@ -162,6 +157,7 @@ class StartupDialog(QDialog):
     
     def _choice_card(self, page_idx, icon_path, _title, _subtitle) -> QFrame:
         card = QPushButton()
+        card.setCursor(Qt.PointingHandCursor)
         card.setObjectName("start-dialogue-choice-card")
         card.setFlat(True)
         card.setMinimumSize(160, 100)
@@ -213,6 +209,80 @@ class StartupDialog(QDialog):
             QMessageBox.information(self, "Erfolg", "Datei erfolgreich angelegt.")
             self.result = name
             self.accept()
+
+    def _load_file_page(self):
+        content = QFrame()
+        layout = QVBoxLayout(content)
+        layout.setContentsMargins(32,32,32,32)
+        layout.setSpacing(24)
+        files = self._list_existing()
+        if files:
+            btn_layout = QVBoxLayout()
+            layout.setSpacing(0)
+            for file in files:
+                file_path = str.replace(file, " ", "_") +".json"
+                btn = QPushButton(file)
+                btn.setFlat(True)
+                btn.setCursor(Qt.PointingHandCursor)
+                btn.setProperty("type", "load-list-btn")
+                btn.clicked.connect(lambda checked, fp=file_path: self._load_file(fp))
+                btn_layout.addWidget(btn)
+            layout.addLayout(btn_layout)
+        else:
+            layout.addWidget(QLabel("Keine gespeicherten Einträge."), alignment=Qt.AlignCenter)
+        go_back_btn = self._icon_button("assets/icons/undo.svg",
+                                        (120,32),(20,20),
+                                        "start-dialogue-btn-red",
+                                        "Abbrechen",
+                                        lambda: self._switch_page(0))
+        layout.addWidget(go_back_btn, alignment=Qt.AlignCenter)
+        return content
+            
+
+    def _list_existing(self, directory="data"):
+        dir_path = Path.cwd() / directory
+
+        try:
+            return [str.replace(str.replace(f.name, "_", " "),".json", "") for f in dir_path.iterdir() if f.is_file()]
+
+        except FileNotFoundError:
+            print("Error: Ordner nicht gefunden.")
+            return []
+
+        except Exception as e:
+            print(f"Fehler: {e}")
+            return []
+        
+    def _icon_button(
+        self,
+        icon_path: str,
+        btn_size: tuple[int, int] = (120, 32),
+        icon_size: tuple[int, int] = (20, 20),
+        button_type=None,
+        btn_tooltip: str = "",
+        func=None
+    ) -> QPushButton:
+
+        btn = QPushButton()
+        btn.setCursor(Qt.PointingHandCursor)
+        btn.setFixedSize(QSize(*btn_size))
+
+        if button_type:
+            btn.setProperty("type", button_type)
+
+        btn.setIcon(QIcon(icon_path))
+        btn.setIconSize(QSize(*icon_size))
+
+        btn.setToolTip(btn_tooltip)
+
+        if func:
+            btn.clicked.connect(func)
+
+        return btn
+    
+    def _load_file(self, file_path):
+        self.result = file_path
+        self.accept()
 
     
 

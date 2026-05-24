@@ -55,3 +55,13 @@ class Ansprechpartner(QWidget):
         if fw:
             fw.clearFocus()
         return super().mousePressEvent(event)
+    
+    def get_data(self) -> dict:
+        return {
+            key: val.text() for key, val in self.f_partner.items()
+        }
+    
+    def set_data(self, data):
+        for key, val in data.items():
+            if key in self.f_partner:
+                self.f_partner[key].setText(val)

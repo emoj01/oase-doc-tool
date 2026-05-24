@@ -68,3 +68,16 @@ class Partner(QWidget):
         if fw:
             fw.clearFocus()
         return super().mousePressEvent(event)
+    
+    def get_data(self) -> dict:
+        return {
+            "Regiment": {field: widget.text() for field, widget in self.f_partner[0].items()},
+            "Pfarramt": {field: widget.text() for field, widget in self.f_partner[1].items()},
+            "Stadt":    {field: widget.text() for field, widget in self.f_partner[2].items()},
+        }
+
+    def set_data(self, data: dict):
+        for group_key, group_idx in [("Regiment", 0), ("Pfarramt", 1), ("Stadt", 2)]:
+            group_data = data.get(group_key, {})
+            for field, widget in self.f_partner[group_idx].items():
+                widget.setText(group_data.get(field, ""))

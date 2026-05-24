@@ -90,4 +90,18 @@ class BowlingKegeln(QWidget):
         if fw:
             fw.clearFocus()
         return super().mousePressEvent(event)
+    
+    def get_data(self) -> dict:
+        return{
+            "Bowling/Kegeln": self.f_bowling_kegeln.currentText(),
+            "Anzahl Bahnen": self.f_anz_bahnen.value(),
+            "Preis": self.f_bahn_preis.value(),
+            "Öffnungszeiten": self.f_opening_hours.text()
+        }
+
+    def set_data(self, data: dict):
+        self.f_bowling_kegeln.setCurrentText(data.get("Bowling/Kegeln", "Bowling"))
+        self.f_anz_bahnen.setValue(data.get("Anzahl Bahnen", 0)),
+        self.f_bahn_preis.setValue(data.get("Preis", 0.0))
+        self.f_opening_hours.setText(data.get("Öffnungszeiten", ""))
 

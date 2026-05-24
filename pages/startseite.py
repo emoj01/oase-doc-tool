@@ -35,3 +35,11 @@ class Startseite(QWidget):
         if fw:
             fw.clearFocus()
         return super().mousePressEvent(event)
+    
+    def get_data(self) -> dict:
+        return {
+            "Beschreibung": self.f_text.toPlainText()
+        }
+    
+    def set_data(self, data: dict):
+        self.f_text.setPlainText(data.get("Beschreibung", ""))

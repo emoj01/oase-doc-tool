@@ -119,12 +119,12 @@ class AllgemeinPage(QWidget):
         # Add row button
         add_btn = QPushButton("+ Zeile hinzufügen")
         add_btn.setObjectName("add-btn")
-        add_btn.clicked.connect(self._add_oh_entry)
+        add_btn.clicked.connect(lambda: self._add_oh_entry())
         layout.addWidget(add_btn, alignment=Qt.AlignLeft)
 
         return card
 
-    def _add_oh_entry(self):
+    def _add_oh_entry(self, days_text: str ="", time_text: str =""):
         row_widget = QWidget()
         row_layout = QHBoxLayout(row_widget)
         row_layout.setContentsMargins(0, 0, 0, 0)
@@ -132,8 +132,10 @@ class AllgemeinPage(QWidget):
 
         days = QLineEdit()
         days.setPlaceholderText("z.B. Mo-Fr")
+        days.setText(days_text)
         time = QLineEdit()
         time.setPlaceholderText("z.B. 08:00-20:00")
+        time.setText(time_text)
 
         remove_btn = QPushButton("×")
         remove_btn.setObjectName("remove-btn")
@@ -152,6 +154,51 @@ class AllgemeinPage(QWidget):
     def _remove_oh_entry(self, row_widget: QWidget):
         self.oh_layout.removeWidget(row_widget)
         row_widget.deleteLater()
+
+    def get_data(self) -> dict:
+        opening_hours = []
+        for i in range(self.oh_layout.count()):
+            row_widget = self.oh_layout.itemAt(i).widget()
+            row_layout = row_widget.layout()
+            
+            # Index 1 = days QLineEdit, Index 3 = time QLineEdit
+            days = row_layout.itemAt(1).widget().text()
+            time = row_layout.itemAt(3).widget().text()
+
+            opening_hours.append((days,time))
+
+        return {
+            "Straße": self.f_street.text(),
+            "Hausnummer": self.f_h_number.text(),
+            "PLZ": self.f_zip.text(),
+            "Stadt": self.f_city.text(),
+            "Telefon": self.f_phone.text(),
+            "Fax": self.f_fax.text(),
+            "E-Mail": self.f_mail.text(),
+            "Öffnungszeiten": opening_hours
+        }
+
+    def set_data(self, data: dict):
+        self._clear_oh_entries()
+        
+        self.f_street.setText(data.get("Straße",""))
+        self.f_h_number.setText(data.get("Hausnummer",""))
+        self.f_zip.setText(data.get("PLZ",""))
+        self.f_city.setText(data.get("Stadt",""))
+        self.f_phone.setText(data.get("Telefon",""))
+        self.f_fax.setText(data.get("Fax",""))
+        self.f_mail.setText(data.get("E-Mail",""))
+
+        for entry in data.get("Öffnungszeiten", []):
+            self._add_oh_entry(days_text=entry[0], time_text=entry[1])
+
+    def _clear_oh_entries(self):
+        while self.oh_layout.count():
+            item = self.oh_layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.setParent(None)
+                widget.deleteLater()
 
     
 
