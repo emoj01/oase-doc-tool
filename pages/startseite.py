@@ -12,7 +12,7 @@ class Startseite(QWidget):
         layout.setSpacing(20)
 
         card = QFrame()
-        card.setObjectName("card")
+        card.setProperty("type","card")
 
         card_layout = QVBoxLayout(card)
         card_layout.setContentsMargins(20, 20, 20, 20)

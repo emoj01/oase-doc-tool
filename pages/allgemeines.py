@@ -21,6 +21,7 @@ class AllgemeinPage(QWidget):
 
         # Content Widget, which will get scrolled
         content = QWidget()
+        content.setProperty("type", "bg-light")
         scroll.setWidget(content)
 
         layout = QVBoxLayout(content)
@@ -42,7 +43,7 @@ class AllgemeinPage(QWidget):
     # | Cards |__________________________________________________________________________
     def _make_card(self, title: str) -> tuple[QFrame, QFormLayout]:
         card = QFrame()
-        card.setObjectName("card")
+        card.setProperty("type", "card")
 
         layout = QVBoxLayout(card)
         layout.setContentsMargins(20, 20, 20, 20)
@@ -98,7 +99,7 @@ class AllgemeinPage(QWidget):
 
     def _opening_hours_card(self) -> QFrame:
         card = QFrame()
-        card.setObjectName("card")
+        card.setProperty("type","card")
 
         layout = QVBoxLayout(card)
         layout.setContentsMargins(20, 20, 20, 20)

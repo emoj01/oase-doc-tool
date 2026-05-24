@@ -5,6 +5,11 @@ from PySide6.QtWidgets import (
     )
 from PySide6.QtCore import Qt
 
+import yaml
+
+with open("config.yaml", "r", encoding="utf-8") as f:
+    config = yaml.safe_load(f)
+
 class BowlingKegeln(QWidget):
     def __init__(self):
         super().__init__()
@@ -22,6 +27,14 @@ class BowlingKegeln(QWidget):
 
         row_1 = self._new_row()
         self.f_bowling_kegeln = QComboBox()
+        #popup_frame = self.f_bowling_kegeln.view().parentWidget()
+        #popup_frame.setContentsMargins(0,0,0,0)
+        #popup_frame.setStyleSheet(f"border: 1.5px solid {config["colors"]["border"]};")
+        # popup_frame.setContentsMargins(0,0,0,0)
+        # self.f_bowling_kegeln.view().setFrameShape(QFrame.NoFrame)
+        # popup_frame.setFrameShape(QFrame.NoFrame)
+
+        
         self.f_bowling_kegeln.addItems(["Bowling", "Kegeln"])
         row_1.addWidget(QLabel("Kegeln / Bowling"))
         row_1.addWidget(self.f_bowling_kegeln)
@@ -59,7 +72,7 @@ class BowlingKegeln(QWidget):
     
     def _basic_card(self, _title: str) -> tuple[QFrame, QVBoxLayout]:
         card = QFrame()
-        card.setObjectName("card")
+        card.setProperty("type","card")
 
         card_layout = QVBoxLayout(card)
         card_layout.setContentsMargins(20, 20, 20, 20)

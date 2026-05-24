@@ -23,7 +23,7 @@ from pages.ansprechpartner import Ansprechpartner
 
 # The main app
 class OaseApp(QMainWindow):
-    def __init__(self):
+    def __init__(self, house_name):
         # setting the window properties
         super().__init__()
         self.setWindowTitle(config["app"]["title"])
@@ -32,6 +32,9 @@ class OaseApp(QMainWindow):
         self.setMinimumSize(config["app"]["window"]["min_size"]["width"],
                             config["app"]["window"]["min_size"]["height"])
         self.setCentralWidget(QLabel("Hallo OASE!"))
+
+        self.house_name = str.replace(house_name, ".json", "")
+        self.house_name = str.replace(self.house_name, "_", " ")
 
         # Main Widget
         root = QWidget()
@@ -58,12 +61,12 @@ class OaseApp(QMainWindow):
         layout = QHBoxLayout()
         layout.setContentsMargins(28,0,28, 0)
 
-        title = QLabel("OASE -")
+        title = QLabel("OASE – " + self.house_name)
         layout.addWidget(title)
 
-        house_name = QLineEdit()
-        house_name.setPlaceholderText("Bezeichnung d. OASE (z.B. \"Haus Adelheide\")") 
-        layout.addWidget(house_name)
+        # house_name = QLineEdit()
+        # house_name.setPlaceholderText("Bezeichnung d. OASE (z.B. \"Haus Adelheide\")") 
+        # layout.addWidget(house_name)
 
         layout.addStretch() # moving content to the left
         save_btn = QPushButton()

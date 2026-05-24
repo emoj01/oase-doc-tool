@@ -8,8 +8,18 @@ QWidget {
     font-family: "IBM Plex Sans";
 }
 
+QWidget[type="bg-light"]{
+    background-color: $(bg);
+}
+
+QScrollArea[type="bg-light"]{
+    background-color: $(bg);
+}
+
+
 QLineEdit, QTextEdit {
     font-family: "IBM Plex Mono";
+    color: $(text);
 }
 
 #header{
@@ -68,10 +78,14 @@ QPushButton[type="nav"][active="true"]{
     color: $(primary);
 }
 
-#card{
+QFrame[type="card"]{
     background: $(surface);
     border-radius: 12px;
     border: 1px solid $(border);
+}
+
+QFrame[type="card"] QLabel{
+    color: $(text);
 }
 
 #add-btn{
@@ -91,7 +105,7 @@ QPushButton[type="nav"][active="true"]{
     font-weight: 600;
 }
 
-QLabel[type="h3"]{
+QFrame[type="card"] QLabel[type="h3"]{
     font-weight: 700;
     color: $(primary);
 }
@@ -154,13 +168,14 @@ QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {
 }
 
 QComboBox {
-    background: $(surface);
+    background: $(bg);
     border: 1.5px solid $(border);
     border-radius: 8px;
     padding: 6px 10px;
     font-size: 13px;
     color: $(text);
 }
+
 
 QComboBox:focus {
     border-color: $(primary_lt);
@@ -223,4 +238,31 @@ QComboBox QAbstractItemView::item:selected {
 
 #save-btn:pressed, #gen-doc-btn:pressed {
     background: rgba(30, 58, 138, 0.5);
+}
+
+QScrollBar:vertical {
+    background: $(bg);
+    width: 8px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical {
+    background: $(border);
+    border-radius: 4px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: $(muted);
+}
+
+/* Pfeile und leere Bereiche ausblenden */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
 }

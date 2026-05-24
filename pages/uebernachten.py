@@ -87,7 +87,7 @@ class Uebernachten(QWidget):
 
     def _basic_card(self, _title: str) -> tuple[QFrame, QVBoxLayout]:
         card = QFrame()
-        card.setObjectName("card")
+        card.setProperty("type","card")
 
         card_layout = QVBoxLayout(card)
         card_layout.setContentsMargins(20, 20, 20, 20)

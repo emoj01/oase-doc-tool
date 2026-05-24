@@ -2,7 +2,6 @@
 colors:
   primary: "#1E3A8A"
   primary_lt: "#3B82F6"
-  accent: "#22C55E"
   bg: "#F5F6FA"
   surface: "#FFFFFF"
   muted: "#94A3B8"
@@ -10,6 +9,18 @@ colors:
   text_light: "#64748B"
   border: "#E2E8F0"
   nav_active: "#DBEAFE"
+
+  accent: "#22C55E"
+  accent_lt: "#4ADE80"
+  accent_soft: "#DCFCE7"
+  accent_hover: "#16A34A"
+  accent_pressed: "#15803D"
+  
+  red: "#EF4444"
+  red_lt: "#F87171"
+  red_soft: "#FEE2E2"
+  red_hover: "#DC2626"
+  red_pressed: "#B91C1C"
 
 # App
 app:

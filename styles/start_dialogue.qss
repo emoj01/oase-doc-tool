@@ -1,4 +1,4 @@
-#start-dialogue-body{
+#start-dialogue-wrapper{
     background: $(bg);
     border-radius: 18px;
 }
@@ -28,4 +28,64 @@
 
 #start-dialogue-btn-close{
     background: transparent
+}
+
+#start-dialogue-initial-page QLabel{
+    color: #000000;
+}
+
+#start-dialogue-initial-page QLabel[type="h1"]{
+    font-weight:600;
+    font-size:14px;
+}
+
+#start-dialogue-choice-card{
+    padding:0;
+    border: 1.5px solid $(muted);
+    border-radius: 8px;
+}
+
+#start-dialogue-choice-card:hover{
+    background: $(surface);
+}
+
+#start-dialogue-choice-card:pressed{
+    background: $(muted);
+}
+
+
+#start-dialogue-start-new QLabel{
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#start-dialogue-start-new QLineEdit{
+    color: $(text);
+}
+
+QPushButton[type="start-dialogue-btn-green"]{
+    background-color: $(accent);
+    border: None;
+    border-radius: 8px;
+}
+
+QPushButton[type="start-dialogue-btn-red"]{
+    background-color: $(red);
+    border: None;
+    border-radius: 8px;
+}
+QPushButton[type="start-dialogue-btn-green"]:hover{
+    background-color: $(accent_hover);
+}
+
+QPushButton[type="start-dialogue-btn-red"]:hover{
+    background-color: $(red_hover);
+}
+QPushButton[type="start-dialogue-btn-green"]:pressed{
+    background-color: $(accent_pressed);
+}
+
+QPushButton[type="start-dialogue-btn-red"]:pressed{
+    background-color: $(red_pressed);
 }
