@@ -20,6 +20,7 @@ from pages.uebernachten import Uebernachten
 from pages.bowling_kegeln import BowlingKegeln
 from pages.partner import Partner
 from pages.ansprechpartner import Ansprechpartner
+from utils.doc_generator import generate_pdf
 
 from pathlib import Path
 import json
@@ -65,13 +66,13 @@ class OaseApp(QMainWindow):
         if self.save_path.exists():
             with open (self.save_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            self.pages[0][1].set_data(data.get("Seite-Allgemeines",{}))
-            self.pages[6][1].set_data(data.get("Seite-Ansprechpartner",{}))
-            self.pages[4][1].set_data(data.get("Seite-Bowling-Kegeln",{}))
-            self.pages[2][1].set_data(data.get("Seite-Feiern-Tagen",{}))
-            self.pages[5][1].set_data(data.get("Seite-Partner",{})),
-            self.pages[1][1].set_data(data.get("Seite-Start",{})),
-            self.pages[3][1].set_data(data.get("Seite-Übernachten",{}))
+            self.pages[0][1].set_data(data.get("seite_allgemeines",{}))
+            self.pages[6][1].set_data(data.get("seite_ansprechpartner",{}))
+            self.pages[4][1].set_data(data.get("seite_bowling_kegeln",{}))
+            self.pages[2][1].set_data(data.get("seite_feiern_tagen",{}))
+            self.pages[5][1].set_data(data.get("seite_partner",{})),
+            self.pages[1][1].set_data(data.get("seite_start",{})),
+            self.pages[3][1].set_data(data.get("seite_uebernachten",{}))
 
         # Adding Header and Body
         main_layout.addWidget(self._header())
@@ -111,6 +112,7 @@ class OaseApp(QMainWindow):
         gen_doc_btn.setIcon(QIcon("assets/icons/generate_doc_white.svg"))
         gen_doc_btn.setToolTip("Dokument generieren..")
         gen_doc_btn.setIconSize(QSize(24,24))
+        gen_doc_btn.clicked.connect(lambda: self._generate_document())
         layout.addWidget(gen_doc_btn)
 
         header.setLayout(layout)
@@ -176,15 +178,25 @@ class OaseApp(QMainWindow):
             btn.style().polish(btn)
 
     def save_data(self):
-        data ={
-            "Seite-Allgemeines": self.pages[0][1].get_data(),
-            "Seite-Ansprechpartner": self.pages[6][1].get_data(),
-            "Seite-Bowling-Kegeln": self.pages[4][1].get_data(),
-            "Seite-Feiern-Tagen": self.pages[2][1].get_data(),
-            "Seite-Partner": self.pages[5][1].get_data(),
-            "Seite-Start": self.pages[1][1].get_data(),
-            "Seite-Übernachten": self.pages[3][1].get_data(),
-        }
+        data = self._all_data()
         with open(self.save_path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
+
+    def _all_data(self):
+        return {
+            "name": self.house_name,
+            "seite_allgemeines": self.pages[0][1].get_data(),
+            "seite_ansprechpartner": self.pages[6][1].get_data(),
+            "seite_bowling_kegeln": self.pages[4][1].get_data(),
+            "seite_feiern_tagen": self.pages[2][1].get_data(),
+            "seite_partner": self.pages[5][1].get_data(),
+            "seite_start": self.pages[1][1].get_data(),
+            "seite_uebernachten": self.pages[3][1].get_data(),
+        }
+
+
+    def _generate_document(self):
+        data = self._all_data()
+        path = generate_pdf(data, (self.house_name + ".pdf"))
+        print(f"Erfolg. PDF unter {path} gespeichert.")
     

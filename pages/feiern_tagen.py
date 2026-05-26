@@ -72,13 +72,13 @@ class FeiernTagen(QWidget):
     
     def get_data(self) -> dict:
         return {
-            "Anzahl Veranstaltungsräume": self.f_n_rooms.value(),
-            "Raumkapazität": self.f_room_capacity.value(),
-            "Beschreibung": self.f_desc.toPlainText()
+            "anzahl_veranstaltungsraeume": self.f_n_rooms.value(),
+            "raumkapazität": self.f_room_capacity.value(),
+            "beschreibung": self.f_desc.toPlainText()
         }
     
     def set_data(self, data: dict):
-        self.f_n_rooms.setValue(data.get("Anzahl Veranstaltungsräume", 0))
-        self.f_room_capacity.setValue(data.get("Raumkapazität", 0))
-        self.f_desc.setPlainText(data.get("Beschreibung", ""))
+        self.f_n_rooms.setValue(data.get("anzahl_veranstaltungsraeume", 0))
+        self.f_room_capacity.setValue(data.get("raumkapazitaet", 0))
+        self.f_desc.setPlainText(data.get("beschreibung", ""))
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #1E293B;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 { font-size: 22px; color: #1E3A8A; }
+    h2 { font-size: 14px; color: #1E3A8A; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px; }
+
+    .section { margin-bottom: 28px; }
+
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 6px 0; vertical-align: top; }
+    td:first-child { color: #64748B; width: 40%; }
+  </style>
+</head>
+<body>
+
+  <h1>{{ haus_name }}</h1>
+
+  <div class="section">
+    <h2>Adresse & Kontakt</h2>
+    <table>
+      <tr><td>Straße</td>        <td>{{ seite_allgemeines.straße }} {{ seite_allgemeines.hausnummer }}</td></tr>
+      <tr><td>Ort</td>           <td>{{ seite_allgemeines.plz }} {{ seite_allgemeines.stadt }}</td></tr>
+      <tr><td>Telefon</td>       <td>{{ seite_allgemeines.telefon }}</td></tr>
+      <tr><td>E-Mail</td>        <td>{{ seite_allgemeines.e_mail }}</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Öffnungszeiten</h2>
+    <table>
+      {% for zeile in seite_allgemeines.oeffnungszeiten %}
+      <tr><td>{{ zeile[0] }}</td><td>{{ zeile[1] }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  {# weitere Sektionen nach demselben Muster #}
+
+</body>
+</html>

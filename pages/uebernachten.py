@@ -45,8 +45,9 @@ class Uebernachten(QWidget):
                 field.setRange(0, 9999)
                 field.setSuffix(" €")
 
-            self.f_zimmer[info] = field
             form.addRow(info, field)
+            info = info.lower().replace(" ","_")
+            self.f_zimmer[info] = field
 
         room_info_layout.addLayout(form)
         return room_info_card
@@ -108,17 +109,17 @@ class Uebernachten(QWidget):
     
     def get_data(self) -> dict:
         return {
-            "Zimmer": {field: widget.value() for field, widget in self.f_zimmer.items()},
-            "Frühstück Zeiten": self.f_fruehstueck_zeiten.text(),
-            "Frühstück Preis": self.f_fruehstueck_preis.value(),
-            "Beschreibung": self.f_beschreibung.toPlainText()
+            "zimmer": {field: widget.value() for field, widget in self.f_zimmer.items()},
+            "fruehstueck_zeiten": self.f_fruehstueck_zeiten.text(),
+            "fruehstueck_preis": self.f_fruehstueck_preis.value(),
+            "beschreibung": self.f_beschreibung.toPlainText()
         }
 
     def set_data(self, data: dict):
         for field, widget in self.f_zimmer.items():
-            widget.setValue(data.get("Zimmer", {}).get(field, 0))
+            widget.setValue(data.get("zimmer", {}).get(field, 0))
         
-        self.f_fruehstueck_zeiten.setText(data.get("Frühstück Zeiten", ""))
-        self.f_fruehstueck_preis.setValue(data.get("Frühstück Preis", 0.0))
-        self.f_beschreibung.setPlainText(data.get("Beschreibung", ""))
+        self.f_fruehstueck_zeiten.setText(data.get("fruehstueck_zeiten", ""))
+        self.f_fruehstueck_preis.setValue(data.get("fruehstueck_preis", 0.0))
+        self.f_beschreibung.setPlainText(data.get("beschreibung", ""))
 

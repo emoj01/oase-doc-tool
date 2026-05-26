@@ -17,7 +17,7 @@ class Ansprechpartner(QWidget):
     def _partner(self):
         card, layout = self._basic_card("Ansprechpartner")
 
-        entries = ["Name Ansprechpartner", "Funktion", "Mail", "Ansprechpartner"]
+        entries = ["Name Ansprechpartner", "Funktion", "E-Mail", "Ansprechpartner"]
         form = QFormLayout()
         form.setContentsMargins(28,0,0,0)
         form.setSpacing(12)
@@ -31,8 +31,10 @@ class Ansprechpartner(QWidget):
             else:
                 input.setPlaceholderText(entry)
             input.setFixedWidth(350)
-            self.f_partner[entry] = input
             form.addRow(QLabel(entry), input)
+            entry = entry.lower().replace(" ", "_").replace("-","_")
+            self.f_partner[entry] = input
+            
 
         return card
 

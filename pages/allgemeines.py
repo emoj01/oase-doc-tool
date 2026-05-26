@@ -168,28 +168,28 @@ class AllgemeinPage(QWidget):
             opening_hours.append((days,time))
 
         return {
-            "Straße": self.f_street.text(),
-            "Hausnummer": self.f_h_number.text(),
-            "PLZ": self.f_zip.text(),
-            "Stadt": self.f_city.text(),
-            "Telefon": self.f_phone.text(),
-            "Fax": self.f_fax.text(),
-            "E-Mail": self.f_mail.text(),
-            "Öffnungszeiten": opening_hours
+            "straße": self.f_street.text(),
+            "hausnummer": self.f_h_number.text(),
+            "plz": self.f_zip.text(),
+            "stadt": self.f_city.text(),
+            "telefon": self.f_phone.text(),
+            "fax": self.f_fax.text(),
+            "e_mail": self.f_mail.text(),
+            "oeffnungszeiten": opening_hours
         }
 
     def set_data(self, data: dict):
         self._clear_oh_entries()
         
-        self.f_street.setText(data.get("Straße",""))
-        self.f_h_number.setText(data.get("Hausnummer",""))
-        self.f_zip.setText(data.get("PLZ",""))
-        self.f_city.setText(data.get("Stadt",""))
-        self.f_phone.setText(data.get("Telefon",""))
-        self.f_fax.setText(data.get("Fax",""))
-        self.f_mail.setText(data.get("E-Mail",""))
+        self.f_street.setText(data.get("straße",""))
+        self.f_h_number.setText(data.get("hausnummer",""))
+        self.f_zip.setText(data.get("plz",""))
+        self.f_city.setText(data.get("stadt",""))
+        self.f_phone.setText(data.get("telefon",""))
+        self.f_fax.setText(data.get("fax",""))
+        self.f_mail.setText(data.get("e_mail",""))
 
-        for entry in data.get("Öffnungszeiten", []):
+        for entry in data.get("oeffnungszeiten", []):
             self._add_oh_entry(days_text=entry[0], time_text=entry[1])
 
     def _clear_oh_entries(self):

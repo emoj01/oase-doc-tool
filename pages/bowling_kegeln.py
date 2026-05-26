@@ -93,15 +93,15 @@ class BowlingKegeln(QWidget):
     
     def get_data(self) -> dict:
         return{
-            "Bowling/Kegeln": self.f_bowling_kegeln.currentText(),
-            "Anzahl Bahnen": self.f_anz_bahnen.value(),
-            "Preis": self.f_bahn_preis.value(),
-            "Öffnungszeiten": self.f_opening_hours.text()
+            "bowling_kegeln": self.f_bowling_kegeln.currentText(),
+            "anzahl_bahnen": self.f_anz_bahnen.value(),
+            "preis": self.f_bahn_preis.value(),
+            "oeffnungszeiten": self.f_opening_hours.text()
         }
 
     def set_data(self, data: dict):
-        self.f_bowling_kegeln.setCurrentText(data.get("Bowling/Kegeln", "Bowling"))
-        self.f_anz_bahnen.setValue(data.get("Anzahl Bahnen", 0)),
-        self.f_bahn_preis.setValue(data.get("Preis", 0.0))
-        self.f_opening_hours.setText(data.get("Öffnungszeiten", ""))
+        self.f_bowling_kegeln.setCurrentText(data.get("bowling_kegeln", "Bowling"))
+        self.f_anz_bahnen.setValue(data.get("anzahl_bahnen", 0)),
+        self.f_bahn_preis.setValue(data.get("preis", 0.0))
+        self.f_opening_hours.setText(data.get("oeffnungszeiten", ""))
 

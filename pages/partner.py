@@ -41,8 +41,9 @@ class Partner(QWidget):
                 input = QLineEdit()
                 input.setPlaceholderText(field)
                 input.setFixedWidth(350)
-                dict[field] = input
                 form.addRow(field, input)  # ← Label + Feld in einer Zeile
+                field = field.lower().replace(" ", "_").replace(",","").replace(".","")
+                dict[field] = input
 
             self.f_partner.append(dict)
             card_layout.addLayout(form)
@@ -71,13 +72,13 @@ class Partner(QWidget):
     
     def get_data(self) -> dict:
         return {
-            "Regiment": {field: widget.text() for field, widget in self.f_partner[0].items()},
-            "Pfarramt": {field: widget.text() for field, widget in self.f_partner[1].items()},
-            "Stadt":    {field: widget.text() for field, widget in self.f_partner[2].items()},
+            "regiment": {field: widget.text() for field, widget in self.f_partner[0].items()},
+            "pfarramt": {field: widget.text() for field, widget in self.f_partner[1].items()},
+            "stadt":    {field: widget.text() for field, widget in self.f_partner[2].items()},
         }
 
     def set_data(self, data: dict):
-        for group_key, group_idx in [("Regiment", 0), ("Pfarramt", 1), ("Stadt", 2)]:
+        for group_key, group_idx in [("regiment", 0), ("pfarramt", 1), ("stadt", 2)]:
             group_data = data.get(group_key, {})
             for field, widget in self.f_partner[group_idx].items():
                 widget.setText(group_data.get(field, ""))

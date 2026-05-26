@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+
+        .page{
+            width: 170mm;
+        }
+
+        .break{
+            break-after: page;
+        }
+
+        .break-before{
+            break-before: page;
+        }
+
+        .no-break{
+            break-inside: avoid;
+        }
+
+        .page-header{
+            color: #bcbcbc;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="page-header">
+            <p>OASE – {{name}}</p>
+        </div>
+        <h1>Startseite</h1>
+        <p>{{ seite_start.beschreibung}}</p>
+        <h2>Öffnungszeiten</h2>
+        <table>
+            {% for line in seite_allgemeines.oeffnungszeiten %}
+            <tr>
+                <td>{{line[0]}}</td>
+                <td>{{line[1]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h2>Addresse</h2>
+        <table>
+            <tr>
+                <td>Straße, Nr.: </td>
+                <td>{{seite_allgemeines.straße}} {{seite_allgemeines.hausnummer}} </td>
+            </tr>
+            <tr>
+                <td>PLZ, Ort: </td>
+                <td>{{seite_allgemeines.plz}} {{seite_allgemeines.stadt}}</td>
+            </tr>
+
+        </table>
+        <h2>Kontakt</h2>
+        <table>
+            <tr>
+                <td>Telefon: </td>
+                <td>{{seite_allgemeines.telefon}}</td>
+            </tr>
+            <tr>
+                <td>Fax: </td>
+                <td>{{seite_allgemeines.fax}}</td>
+            </tr>
+            <tr>
+                <td>E-Mail: </td>
+                <td>{{seite_allgemeines.e_mail}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="break"></div>
+    <div class="page">
+        <h1>...</h1>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{
+    "name": "Zum Oertzetal",
+    "seite_allgemeines": {
+        "straße": "Danziger Straße",
+        "hausnummer": "74 - 76",
+        "plz": "29633",
+        "stadt": "Munster",
+        "telefon": "+49 (0) 5192 2351",
+        "fax": "",
+        "e_mail": "info@oase-munster.de",
+        "oeffnungszeiten": [
+            [
+                "Mo., So.",
+                "Ruhetag"
+            ],
+            [
+                "Di. - Sa.",
+                "16:00 - 22:00 Uhr"
+            ]
+        ]
+    },
+    "seite_ansprechpartner": {
+        "name_ansprechpartner": "Frau Anastasia Margariti",
+        "funktion": "Geschäftsführung",
+        "e_mail": "info@oase-munster.de",
+        "ansprechpartner": "05192 2351"
+    },
+    "seite_bowling_kegeln": {
+        "bowling_kegeln": "Bowling",
+        "anzahl_bahnen": 6,
+        "preis": 24.0,
+        "oeffnungszeiten": "siehe Öffnungszeiten"
+    },
+    "seite_feiern_tagen": {
+        "anzahl_veranstaltungsraeume": 7,
+        "raumkapazitaet": 300,
+        "beschreibung": "Egal ob Hochzeit, Geburtstag, Firmenjubiläum oder Betriebsausflug: unsere liebenvoll gestalteten und dem Anlass entsprechend dekorierten Räumlichkeiten bieten stets den richtigen Rahmen. Unser freundliches Personal lässt mit seinem aufmerksamen Service keine Wünsche offen und sorgt dafür, dass Ihre Veranstaltung zu einem unvergesslichen Erlebnis wird. "
+    },
+    "seite_partner": {
+        "regiment": {
+            "name_regiment": "Ausbildungszentrum Munster",
+            "kaserne": "Kaserne Panzertruppenschule",
+            "straße_nr": "Am Park 331",
+            "plz_ort": "29633 Munster"
+        },
+        "pfarramt": {
+            "name_pfarramt": "Evangelisches Militärpfarramt Munster I & II",
+            "kaserne": "St. Stephanus Militärkirche",
+            "straße_nr": "Zum Schützenwald 27",
+            "plz_ort": "29633 Munster"
+        },
+        "stadt": {
+            "stadt": "Stadt Munster",
+            "straße_nr": "Heinrich-Peters-Platz 1",
+            "plz_ort": "29633 Munster"
+        }
+    },
+    "seite_start": {
+        "beschreibung": "HERZLICH WILLKOMMEN IN DER OASE – ZUM OERTZETAL! \nEingebettet in die einzigartige Landschaft der Lüneburger Heide liegt die OASE – Zum Oertzetal in der reizenden Garnisonstadt Munster. In zentraler Ortslage ist die OASE gern besuchtes Restaurant, geselliger Treffpunkt sowie kultureller Veranstaltungsort für Bundeswehrangehörige und die zivile Bevölkerung. \nDas angegliederte moderne Bowlingcenter bietet darüber hinaus viele Möglichkeiten, um mit Kamerad:innen, Freund:innen oder der gesamten Familie eine entspannte Zeit zu erleben. "
+    },
+    "seite_uebernachten": {
+        "zimmer": {
+            "anzahl_einzel": 0,
+            "preis_einzel": 0.0,
+            "preis_einzel_als_doppel": 0.0,
+            "anzahl_doppel": 0,
+            "preis_doppel": 0.0
+        },
+        "fruehstueck_zeiten": "",
+        "fruehstueck_preis": 0.0,
+        "beschreibung": ""
+    }
+}

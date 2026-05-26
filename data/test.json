@@ -1,0 +1,63 @@
+{
+    "seite_allgemeines": {
+        "straße": "",
+        "hausnummer": "",
+        "plz": "",
+        "stadt": "",
+        "telefon": "",
+        "fax": "",
+        "e_mail": "",
+        "oeffnungszeiten": []
+    },
+    "seite_ansprechpartner": {
+        "name_ansprechpartner": "",
+        "funktion": "",
+        "e_mail": "",
+        "ansprechpartner": ""
+    },
+    "seite_bowling_kegeln": {
+        "bowling_kegeln": "Bowling",
+        "anzahl_bahnen": 0,
+        "preis": 0.0,
+        "oeffnungszeiten": ""
+    },
+    "seite_feiern_tagen": {
+        "anzahl_veranstaltungsraeume": 0,
+        "raumkapazität": 0,
+        "beschreibung": ""
+    },
+    "seite_partner": {
+        "regiment": {
+            "name_regiment": "",
+            "kaserne": "",
+            "straße_nr": "",
+            "plz_ort": ""
+        },
+        "pfarramt": {
+            "name_pfarramt": "",
+            "kaserne": "",
+            "straße_nr": "",
+            "plz_ort": ""
+        },
+        "stadt": {
+            "stadt": "",
+            "straße_nr": "",
+            "plz_ort": ""
+        }
+    },
+    "seite_start": {
+        "beschreibung": ""
+    },
+    "seite_uebernachten": {
+        "zimmer": {
+            "anzahl_einzel": 0,
+            "preis_einzel": 0.0,
+            "preis_einzel_als_doppel": 0.0,
+            "anzahl_doppel": 0,
+            "preis_doppel": 0.0
+        },
+        "fruehstück_zeiten": "",
+        "fruehstück_preis": 0.0,
+        "beschreibung": ""
+    }
+}
